@@ -1,6 +1,8 @@
+import Image from "next/image"
+import logo from "../../public/Maplante.png"
 
 export default function Home() {
   return (
-  <h1>The main page (page.tsx)</h1>
+  <h1>hello</h1>
   )
 }
