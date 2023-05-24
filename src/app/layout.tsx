@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import logo from "../../public/Maplante.png"
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,6 +36,14 @@ export default function RootLayout({
   rounded-md p-1 flex justify-center shadow-lg'>Se connecter</a>
 </div>
         </nav>
+        <div className="flex justify-center ">
+  <Image
+  className=" mt-7 cursor-pointer transform transition duration-500 hover:scale-75"
+  src={logo}
+  width={275}
+  alt="picture logo"
+   />
+   </div>
 
         <div>{children}</div>
 
