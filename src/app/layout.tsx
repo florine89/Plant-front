@@ -22,6 +22,7 @@ export default function RootLayout({
 
         <Nav/>
         
+
         <div className="flex justify-center ">
           <Image
             className=" mt-7 cursor-pointer transform transition duration-500 hover:scale-75"
