@@ -2,6 +2,22 @@ import Link from "next/link";
 import { prisma } from "@/lib";
 import { redirect } from "next/navigation";
 
+import bcrypt from "bcrypt";
+
+// hash le mot de passe à l'inscription
+async function hashPass(unHashPass: string) {
+  return bcrypt.hash(unHashPass, 10).then(function(hash: string) {
+    return hash;
+  });
+}
+
+// compare les mots de passe pour la connexion
+function isSamePass(unHashPass : string, hashPass: string){
+  return bcrypt.compare(unHashPass, hashPass).then(function(result: boolean){
+    return result;
+  })
+}
+
 async function createUser(data: FormData) {
   "use server"
 
@@ -20,6 +36,7 @@ async function createUser(data: FormData) {
       throw new Error ("Invalid city")
   }
 
+  
   const password = data.get("password")?.valueOf();
   if (typeof password !== "string" || password.length === 0) {
       throw new Error ("Invalid password")
