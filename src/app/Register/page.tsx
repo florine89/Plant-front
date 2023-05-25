@@ -5,18 +5,18 @@ import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 
 // hash le mot de passe à l'inscription
-async function hashPass(unHashPass: string) {
-  return bcrypt.hash(unHashPass, 10).then(function(hash: string) {
-    return hash;
-  });
-}
+// async function hashPass(unHashPass: string) {
+//   return bcrypt.hash(unHashPass, 10).then(function(hash: string) {
+//     return hash;
+//   });
+// }
 
 // compare les mots de passe pour la connexion
-function isSamePass(unHashPass : string, hashPass: string){
-  return bcrypt.compare(unHashPass, hashPass).then(function(result: boolean){
-    return result;
-  })
-}
+// function isSamePass(unHashPass : string, hashPass: string){
+//   return bcrypt.compare(unHashPass, hashPass).then(function(result: boolean){
+//     return result;
+//   })
+// }
 
 async function createUser(data: FormData) {
   "use server"
@@ -35,16 +35,17 @@ async function createUser(data: FormData) {
   if (typeof city !== "string" || city.length === 0) {
       throw new Error ("Invalid city")
   }
-
   
-  const password = data.get("password")?.valueOf();
-  if (typeof password !== "string" || password.length === 0) {
-      throw new Error ("Invalid password")
-  }
-
   const email = data.get("email")?.valueOf();
   if (typeof email !== "string" || email.length === 0) {
-      throw new Error ("Invalid email")
+    throw new Error ("Invalid email")
+  }
+  
+
+  const password = await bcrypt.hash(`${data.get("password")?.valueOf()}`, 10);
+
+  if (typeof password !== "string" || password.length === 0) {
+      throw new Error ("Invalid password")
   }
 
   await prisma.user.create({ data: { firstname, lastname, email, password, city }})
