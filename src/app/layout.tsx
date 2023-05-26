@@ -31,7 +31,7 @@ export default function RootLayout({
         <Nav/>
         
 
-        <div className="flex justify-center "
+        <div className="flex justify-center pt-20 "
         onClick={() => router.push('/')}>
           <Image
             className=" mt-7 cursor-pointer transform transition duration-500 hover:scale-75"
