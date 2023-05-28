@@ -1,32 +1,29 @@
-import Result from "../components/Plant/Result"
-import { revalidatePath } from "next/cache";
-
 const getPlantData = async (value : string) => {
-
-  const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}`)
+  const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}`, { cache: 'no-store' })
   return res.json();
+  
 }
 
-export default async function Plant(input : string) {
-  "use server";
 
+export default async function Plant(input : string) {
+  
   async function changeInputValue(data: FormData){
     "use server";
-
+    
     const input = data.get("inputValue") as string;
     console.log('input val', input);
     
     Plant(input);
-
-    revalidatePath("/plant");
+    
   }
   
   const dataFetch = await getPlantData(input);
+  
   // console.log('datafetch', dataFetch)
-
+  
   let plantList = dataFetch.data;
-  console.log('fetch', plantList)
-
+  console.log('result', plantList)
+  
      
   return (
 
@@ -58,10 +55,17 @@ export default async function Plant(input : string) {
            </button>
         </form>
 
-        <Result plantList={plantList} />
 
 
         </div>
+        <span>Resultat</span>
+    
+        <ul>
+          {plantList.map((plant : any) => 
+          <li key={plant.id}>{plant.slug}</li>
+          )}
+        </ul>
+
       </section>
 
     </main>
