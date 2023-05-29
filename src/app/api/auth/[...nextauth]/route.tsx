@@ -45,7 +45,6 @@ export const authOptions: NextAuthOptions = {
           id: user.id + '',
           email: user.email,
           firstname :user.firstname,
-          randomKey: 'Hi',
 
         }
         }
@@ -53,9 +52,25 @@ export const authOptions: NextAuthOptions = {
       }
     )
   ],
-  callbacks:{
+  callbacks: {
+  //   jwt({ token, account }) {
+  //     console.log('jwt', account?.access_token)
+  //     if (account) {
+  //       token.id_token = account.id_token
+  //       token.provider = account.provider
+  //       token.accessToken = account.access_token
+  //     }
+  //     return token
+  //   },
+  //   session({ session, token }) {
+  //     console.log('session', token.accessToken)
+  //     session.accessToken = token.accessToken as string
+  //     return session
+  //   },
+    
     session: ({session, token}) => {
-      // console.log('Session callback' ,{session, token})
+      // console.log('Session callback' ,{session, token});
+      session.accessToken = token.accessToken as string;
 
       return {
         ...session,
@@ -66,10 +81,13 @@ export const authOptions: NextAuthOptions = {
         }
       }
     },
-    jwt: ({token, user}) => {
-      // console.log('JWT callback' ,{token, user})
-      if (user) {
-        const u = user as unknown as any 
+    jwt: ({token, account}) => {
+      // console.log('JWT callback' ,{token, account})
+      if (account) {
+        const u = account as unknown as any;
+        token.id_token = account.id_token
+        token.provider = account.provider
+        token.accessToken = account.access_token
         return {
           ...token,
           id: u.id,
