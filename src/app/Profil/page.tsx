@@ -3,8 +3,18 @@
 import { useSession } from "next-auth/react"
 
 export const Profile = () => {
-  const {data: session} = useSession();
-  return <pre>{JSON.stringify(session)}</pre>
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      console.log('Not logged in ')
+    },
+  })
+
+  if (status === 'loading') {
+    return 'loadin or unauthenticated'
+  }
+
+  return <>Profile Page</>
 
 }
 

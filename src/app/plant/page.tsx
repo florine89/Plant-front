@@ -1,3 +1,10 @@
+import { useSession } from "next-auth/react"
+
+export const Profile = () => {
+  const {data: session} = useSession();
+  return <pre>{JSON.stringify(session)}</pre>
+
+}
 
 const getPlantData = async (value : string) => {
   const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}&limit=1`)

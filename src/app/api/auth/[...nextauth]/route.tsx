@@ -44,14 +44,40 @@ export const authOptions: NextAuthOptions = {
         return{
           id: user.id + '',
           email: user.email,
-          firstname :user.firstname
+          firstname :user.firstname,
+          randomKey: 'Hi',
 
         }
         }
 
       }
     )
-  ]
+  ],
+  callbacks:{
+    session: ({session, token}) => {
+      console.log('Session callback' ,{session, token})
+
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          token: token.jti
+        }
+      }
+    },
+    jwt: ({token, user}) => {
+      console.log('JWT callback' ,{token, user})
+      if (user) {
+        const u = user as unknown as any 
+        return {
+          ...token,
+          id: u.id,
+        }
+      }
+      return token
+    }
+  }
 }
 
 const handler = NextAuth(authOptions);
