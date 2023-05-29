@@ -7,6 +7,8 @@ import Image from 'next/image';
 import logo from "../../../public/Maplante.png"
 import { useRouter } from 'next/navigation'
 
+import { signIn, signOut } from 'next-auth/react';
+
 export function Nav() {
 
     //mes usestate pour gerer la barre de nav
@@ -65,9 +67,23 @@ export function Nav() {
                     <a href='/Register' className='border-1 m-1 border-emerald-700 hover:bg-dark-green
  transform transition duration-500 hover:scale-110
  rounded-md p-1 flex justify-center shadow-lg'>Sinscrire</a>
-                    <a href='/Login' className='border-1 m-1 border-emerald-700  hover:bg-dark-green
+                    <button 
+                        className='border-1 m-1 border-emerald-700  hover:bg-dark-green
  transform transition duration-500 hover:scale-110
- rounded-md p-1 flex justify-center shadow-lg'>Se connecter</a>
+ rounded-md p-1 flex justify-center shadow-lg'
+                        onClick={() => signIn()}
+                    >
+                        Se connecter
+                    </button>
+
+                    <button 
+                        className='border-1 m-1 border-emerald-700  hover:bg-dark-green
+ transform transition duration-500 hover:scale-110
+ rounded-md p-1 flex justify-center shadow-lg'
+                        onClick={() => signOut()}
+                        >
+                            Se déconnecter
+                    </button>
                 </div>
             </nav>
 
