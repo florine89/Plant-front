@@ -1,20 +1,24 @@
+
 const getPlantData = async (value : string) => {
-  const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}`, { cache: 'no-store' })
+  const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}&limit=1`)
+  // const res = await fetch(`https://trefle.io/api/v1/plants?token=${process.env.TOKEN}&limit=1`)
+
   return res.json();
-  
+
 }
 
-
 export default async function Plant(input : string) {
-  
+  "use server";
+
+
   async function changeInputValue(data: FormData){
     "use server";
-    
+
     const input = data.get("inputValue") as string;
     console.log('input val', input);
-    
+
     Plant(input);
-    
+
   }
   
   const dataFetch = await getPlantData(input);
@@ -22,7 +26,9 @@ export default async function Plant(input : string) {
   // console.log('datafetch', dataFetch)
   
   let plantList = dataFetch.data;
+  
   console.log('result', plantList)
+
   
      
   return (
@@ -59,13 +65,18 @@ export default async function Plant(input : string) {
 
         </div>
         <span>Resultat</span>
-    
+    {plantList.length ==! 0
+      ? 
+      <h2>J'ai des rep</h2>
+    : <h2>No response</h2>
+    }
         <ul>
           {plantList.map((plant : any) => 
           <li key={plant.id}>{plant.slug}</li>
           )}
         </ul>
 
+ 
       </section>
 
     </main>
