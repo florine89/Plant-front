@@ -45,7 +45,8 @@ export function Nav() {
     }, [])
 
     const { data: session, status } = useSession()
-    if (status === "authenticated") {
+    if (status === "authenticated" && session) {
+
         return (
             <div
                 className={Shadow ? 'fixed display-block w-full h-20 shadow-xl z-[100]' : 'fixed w-full h-20 z-[100]'}>
@@ -77,6 +78,7 @@ export function Nav() {
                         >
                             Se déconnecter
                         </button>
+                        <h2 className="lowercase">Bonjour  {session?.user?.name}</h2>
 
                     </div>
                 </nav>
