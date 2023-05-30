@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image'
+import Image from 'next/image';
 
-import { useRouter} from 'next/navigation'
+import { useRouter} from 'next/navigation';
 
 import logo from "../../../public/Maplante.png";
 
-export default function Logo(){
+export default function Header(){
     //ici mon hook useRouter de nextsjs ( il faut absolument être dans un client component)
     //je l'utilise sur mon onclick de mon image
     

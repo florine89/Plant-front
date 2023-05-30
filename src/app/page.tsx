@@ -1,9 +1,11 @@
 import Image from "next/image"
 import plante from "../../public/plantemain.jpg"
+import { error } from "console"
 
 
 export default function Home() {
   return (
+   
     <>
     <div id="#accueil" className="flex flex-col justify-center items-center sm:text-sm">
   <h1 className=" text-2xl mb-5 text-neutral-500 ">Bienvenue sur Maplante ! </h1>
