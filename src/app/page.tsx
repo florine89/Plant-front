@@ -1,6 +1,7 @@
 import Image from "next/image"
 import plante from "../../public/plantemain.jpg"
 
+
 export default function Home() {
   return (
     <>

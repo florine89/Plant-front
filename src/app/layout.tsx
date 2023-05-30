@@ -5,6 +5,7 @@ import Logo from './components/logo';
 import { Providers } from './providers';
 
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -24,6 +25,8 @@ export default function RootLayout({
     <html lang="fr">
       <body className={inter.className}>
         <Providers>
+
+       
 
         <Nav/>
         <Logo/>
