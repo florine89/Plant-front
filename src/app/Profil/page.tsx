@@ -14,7 +14,7 @@ export const Profile = () => {
     return 'loadin or unauthenticated'
   }
 
-  return <>Profile Page</>
+  return <>Profil ici</>
 
 }
 
