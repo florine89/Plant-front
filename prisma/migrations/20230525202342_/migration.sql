@@ -33,7 +33,7 @@ CREATE TABLE "Condition" (
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT,
+    "firstname" TEXT,
     "lastname" TEXT,
     "city" TEXT,
     "password" TEXT,
