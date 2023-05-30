@@ -3,7 +3,9 @@
 //   return res.json();
 // }
 
-async function Plant({data}) {
+import InputChange from "../components/Plant/InputChange";
+
+async function Plant() {
 
   // CLIENT SIDE --> Error with CORS
 
@@ -13,7 +15,7 @@ async function Plant({data}) {
 
   // async function getData() {
 
-  //   const token = 'eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..8xZmDRv8-BOw8cbv.JhvL2J7vp7qCtOm4iSLyPCIIOwALWlUzpWyw5PlJCiKZ-ek4GTsm-jx7KRwjjEOckiX7HfxyHSFZvO_1Iq7J9xZkgJOQJ2T9LNJaUGRm6PI-guFzJMZoQBCIGEHhsJ2-lZayVPTTAaLuxZ7RK8mpYGXrPfF0Hcrkl3VYstVhGFLVOjsai1vovvYa_g.eYxr9v4XXmj6OaVKc_0yvQ';
+  //   const token = '';
 
   //   const value = "coconut";
 
@@ -61,15 +63,6 @@ async function Plant({data}) {
   // let plantList = dataFetch.data;
   // console.log('result', plantList)
 
-  async function changeInputValue(data: FormData){
-    "use server";
-
-    const value = data.get("inputValue") as string;
-    console.log('input val', value);
-
-    getServerSideProps();
-  }
-
   return (
 
     <div className="flex justify-center">
@@ -85,34 +78,9 @@ async function Plant({data}) {
 
         <div className="relative flex mt-10 md:mt-4">
 
-        <form action={changeInputValue}>
-          <input
-          placeholder='test'
-          name="inputValue"
-          type="text"
-          className=" px-2 py-1 rounded-l-md border-2 border-white"/>
-
-          <button className="rounder-r-md border-2 border-zink-100
-            hover:border-zink-500 hover:text-zinc-500 text-zink-100
-            px-2 py-2 cursor-pointer">
-             Search
-           </button>
-        </form>
-
-
+        <InputChange />
 
         </div>
-        <span>Resultat</span>
-
-        {/* {data.length === 0
-            ? <h2>No results</h2>
-            :
-        <ul>
-          {data.map((plant : any) =>
-          <li key={plant.id}>{plant.slug}</li>
-          )}
-        </ul>
-        } */}
 
       </section>
 
@@ -122,19 +90,5 @@ async function Plant({data}) {
   )
 }
 
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-
-  const value = 'coconut';
-  const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}&limit=1`)
-  const dataFetch = await res.json();
-  const data = dataFetch.data;
-
-  console.log('data in getServerSide', data)
-
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default Plant;
