@@ -1,9 +1,21 @@
-import React from 'react'
+'use client'
 
-function Profil() {
-  return (
-    <div>Profil</div>
-  )
+import { useSession } from "next-auth/react"
+
+export const Profile = () => {
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      console.log('Not logged in ')
+    },
+  })
+
+  if (status === 'loading') {
+    return 'loadin or unauthenticated'
+  }
+
+  return <>Profile Page</>
+
 }
 
-export default Profil
+export default Profile;
