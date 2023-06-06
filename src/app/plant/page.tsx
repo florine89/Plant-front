@@ -3,7 +3,7 @@
 //   return res.json();
 // }
 
-import InputChange from "../components/Plant/InputChange";
+import InputChange from "../../components/Plant/InputChange";
 
 async function Plant() {
 

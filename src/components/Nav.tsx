@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import Image from 'next/image';
-import logo from "../../../public/Maplante.png"
+import logo from "../../public/Maplante.png"
 import { useRouter } from 'next/navigation'
 
 import { signIn, signOut, useSession } from 'next-auth/react';
