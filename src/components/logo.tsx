@@ -6,6 +6,10 @@ import { useRouter} from 'next/navigation'
 
 import logo from "../../public/Maplante.png";
 
+/**
+ * Represents the Logo of our website on every page
+ * @returns Image is a nextjs component. We used the nextjs Router navigation function to redirect the user on click
+ */
 export default function Logo(){
     //ici mon hook useRouter de nextsjs ( il faut absolument être dans un client component)
     //je l'utilise sur mon onclick de mon image
