@@ -11,7 +11,11 @@ const baseUrl = 'https://trefle.io/api/v1/plants/search?token=';
 
 // }
 
-
+/**
+ * This async function calls the external API with the secure TOKEN using fetch from NextJS
+ * @param value : is the input value from the user (currently coconut as value)
+ * @returns the response of the external API in json 
+ */
 async function getResult(value:any) {    
 // fetch api
   // console.log('getresult', value)
@@ -19,7 +23,11 @@ async function getResult(value:any) {
   return res.json();
 }
 
-
+/**
+ * This is the refault function of our page
+ * @returns the element of the page with the response of the API (element data)
+ * The component ResultItem permits to handle each result the data are passed to the child
+ */
 async function Plant() {
   
     const value='coconut';

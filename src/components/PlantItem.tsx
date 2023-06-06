@@ -4,6 +4,10 @@ type PlantItemProps = {
   description: string
 }
 
+/**
+ * For each plant avaiable in the prisma DB, the following component is rendered. 
+ * The TypeScript Props are passed to fix the right data from the parent to the child. 
+ */
 export function PlantItem({id, name, description} : PlantItemProps){
   return (
 

@@ -6,6 +6,10 @@ type ResultItemProps = {
   image_url: string
 }
 
+/**
+ * For each result, the component shows the same data. With TS we are typing the data and receiving the destructured data in the component from the parent
+ * With Image, we add in the next.config the possibilty to fetch all the domains
+ */
 export function ResultItem({id, common_name, image_url} : ResultItemProps){
   return (
 
