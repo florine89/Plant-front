@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { useRouter} from 'next/navigation'
 
-import logo from "../../../public/Maplante.png";
+import logo from "../../public/Maplante.png";
 
 export default function Logo(){
     //ici mon hook useRouter de nextsjs ( il faut absolument être dans un client component)

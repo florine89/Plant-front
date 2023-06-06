@@ -1,68 +1,33 @@
-// const getPlantData = async (value : string) => {
-//   const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.TOKEN}&q=${value}&limit=1`)
-//   return res.json();
+import { ResultItem } from "@/components/Plant/ResultItem";
+
+const baseUrl = 'https://trefle.io/api/v1/plants/search?token=';
+
+// async function changeInputValue(data: FormData){
+//   "use server";
+    
+//   // get input value
+//   const value = data.get("inputValue")?.valueOf() as string;
+//   console.log('input val', value);
+
 // }
 
-import InputChange from "../components/Plant/InputChange";
+
+async function getResult(value:any) {    
+// fetch api
+  // console.log('getresult', value)
+  const res = await fetch(`${baseUrl}${process.env.TOKEN}&q=${value}&limit=6`)
+  return res.json();
+}
+
 
 async function Plant() {
+  
+    const value='coconut';
 
-  // CLIENT SIDE --> Error with CORS
-
-  // const [showResults, setShowResults ] = useState();
-
-  // let displayData;
-
-  // async function getData() {
-
-  //   const token = '';
-
-  //   const value = "coconut";
-
-  //   const res = await fetch(`https://trefle.io/api/v1/plants/search?token=${process.env.NEXT_PUBLIC_TOKEN}&q=${value}&limit=1`,{
-  //     method: 'GET',
-  //     headers: {
-  //      'Authorization': `Bearer ${token}`,
-  //     }
-  //   });
-  //   const responseData = await res.json();
-  //   console.log(responseData);
-
-  //   displayData = responseData.map(function(plant : any) {
-  //     return (
-  //       <p key={plant.id}>{plant.slug}</p>
-  //     )
-  //   })
-  //   console.log(responseData);
-  //   setShowResults(displayData);
-  // }
-
-  // useEffect(() => {
-  //   getData();
-
-  // }, [])
-
-  // SERVER SIDE --> the page can't refresh with the result
-  // "use server";
-
-
-  // async function changeInputValue(data: FormData){
-  //   "use server";
-
-  //   const value = data.get("inputValue") as string;
-  //   console.log('input val', value);
-
-  //   Plant(value);
-
-  // }
-
-  // const dataFetch = await getPlantData(input);
-
-  // // console.log('datafetch', dataFetch)
-
-  // let plantList = dataFetch.data;
-  // console.log('result', plantList)
-
+    const dataFetch = await getResult(value);
+    const result = dataFetch.data;
+    // console.log('data', result)
+    
   return (
 
     <div className="flex justify-center">
@@ -78,7 +43,25 @@ async function Plant() {
 
         <div className="relative flex mt-10 md:mt-4">
 
-        <InputChange />
+      
+        {/* <form action={changeInputValue}>
+          <input
+          placeholder='test'
+          name="inputValue"
+          type="text"
+          className=" px-2 py-1 rounded-l-md border-2 border-white"/>
+
+          <button className="rounder-r-md border-2 border-zink-100
+            hover:border-zink-500 hover:text-zinc-500 text-zink-100
+            px-2 py-2 cursor-pointer">
+             Search
+           </button>
+        </form>  */}
+
+    <ul className="pl-4 flex">
+      {result.map((res :any) => (
+        <ResultItem key={res.id} {...res}/>))}
+    </ul>
 
         </div>
 
@@ -88,6 +71,8 @@ async function Plant() {
     </div>
 
   )
+
+
 }
 
 
