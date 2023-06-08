@@ -15,7 +15,7 @@ function getAllPlants() {
 async function Page(){
   
   const allPlants = await getAllPlants()
-  
+  console.log('allPlants', allPlants)
   return(
     <>
     <ul className="pl-4">

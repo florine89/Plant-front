@@ -10,7 +10,7 @@ type ResultItemProps = {
  * For each result, the component shows the same data. With TS we are typing the data and receiving the destructured data in the component from the parent
  * With Image, we add in the next.config the possibilty to fetch all the domains
  */
-export function ResultItem({id, common_name, image_url} : ResultItemProps){
+export default function ResultItem({id, common_name, image_url} : ResultItemProps){
   return (
 
   <div key={id} className="max-w-sm rounded overflow-hidden shadow-lg m-2">
