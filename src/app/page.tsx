@@ -1,6 +1,6 @@
 import Image from "next/image"
 import plante from "../../public/plantemain.jpg"
-import { error } from "console"
+
 
 
 export default function Home() {

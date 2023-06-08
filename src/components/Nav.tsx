@@ -8,8 +8,23 @@ import logo from "../../public/Maplante.png"
 import { useRouter } from 'next/navigation'
 
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+    const users = await prisma.user.findMany();
+    return {
+        props: {
+            initialUsers: users
+        }
+    }
+
+}
 
 export function Nav() {
+
+    
 
     //mes usestate pour gerer la barre de nav
     const [nav, setNav] = useState(false);
@@ -65,6 +80,7 @@ export function Nav() {
                         <AiOutlineMenu size={25} />
                     </div>
 
+                    
                     <div className='flex flex-col w-48 pr-4 text-sm sm:text-xs'>
                         {/* <a href='/Register' className='border-1 m-1 border-emerald-700 hover:bg-dark-green
  transform transition duration-500 hover:scale-110
@@ -79,8 +95,8 @@ export function Nav() {
                             Se déconnecter
                         </button>
                         <h2 className="lowercase">Bonjour  {session?.user?.name}</h2>
-
                     </div>
+
                 </nav>
 
                 {/* Création de ma navbar under 750px avec mon menu burger */}

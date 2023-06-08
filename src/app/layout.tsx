@@ -4,7 +4,6 @@ import { Nav } from '../components/Nav';
 import Logo from '../components/logo';
 import { Providers } from './providers';
 
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
