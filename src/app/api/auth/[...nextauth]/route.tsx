@@ -3,6 +3,12 @@ import { compare } from "bcrypt";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+/**
+ * This export is used to configure NextAuth
+ * We are using the jwt as security and some credentials
+ * During the Auth, we are testing the existence of the tested password in the DB with Prisma.
+ * bcrypt is used here to compare the hash with the compare method. 
+ */
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt'
