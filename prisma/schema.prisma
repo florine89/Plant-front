@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Plant {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?
+  quantity    Int
+  picture     String?
+  category_id Int
+  user_id     Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  favorite    Favorite?
+}
+
+model Category {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
+
+model Condition {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  firstname String?
+  lastname  String?
+  city      String?
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  favorite  Favorite?
+}
+
+model Favorite {
+  id       Int   @id @default(autoincrement())
+  user_id  Int   @unique
+  plant_id Int   @unique
+  plant    Plant @relation(fields: [plant_id], references: [id])
+  user     User  @relation(fields: [user_id], references: [id])
+}
