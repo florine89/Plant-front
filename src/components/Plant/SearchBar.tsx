@@ -1,18 +1,18 @@
-import { revalidateTag } from 'next/cache';
+'use client'
 
-function SearchBar({ getResult } : any) {  
+import { getPlantsResultAction } from "@/app/_actions"
+
+const SearchBar = () => {  
 
     async function changeInputValue(data: FormData){
-        "use server";
           
         // get input value
         let inputval = data.get("inputValue")?.valueOf() as string;
         console.log('input val', inputval);
       
-        getResult(inputval);
-        revalidateTag('posts');
+        if (!inputval || typeof inputval !== 'string') return
+        await getPlantsResultAction(inputval);
       
-        // return { value: inputval }
       }
       
     return (
@@ -20,7 +20,6 @@ function SearchBar({ getResult } : any) {
         <input
         placeholder='test'
         name="inputValue"
-        defaultValue={"coconut"}
         type="text"
         className=" px-2 py-1 rounded-l-md border-2 border-white"/>
 

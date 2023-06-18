@@ -1,5 +1,5 @@
 import NewPlant from "@/components/GIve/addPlant";
-import { PlantItem } from "@/components/PlantItem";
+import { PlantItem } from "@/components/GIve/PlantItem";
 import { prisma } from "@/lib";
 
 /**

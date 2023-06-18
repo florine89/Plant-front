@@ -1,31 +1,27 @@
-import SearchBar from "@/components/Plant/SearchBar";
 import ResultList from "@/components/Plant/Result";
-import { NextRequest, NextResponse } from "next/server";
+import SearchBar from "@/components/Plant/SearchBar";
 
 const baseUrl = 'https://trefle.io/api/v1/plants/search?token=';
-  
+
+export async function getNewResultsFromApi(value : string) {
+    const res = await fetch(`${baseUrl}${process.env.TOKEN}&q=${value}&limit=1`); // , { cache: "no-cache" }, next: { revalidate: 1 }
+    const dataFetch = await res.json();
+
+    const data = dataFetch.data;
+    
+    console.log('res', {data});
+    
+    return data;
+
+}
+ 
   /**
    * This async function calls the external API with the secure TOKEN using fetch from NextJS
    * @param value : is the input value from the user (currently coconut as value)
    * @returns the response of the external API in json 
    */
-async function getResult(value: any, request: NextRequest) { 
-    "use server"   
-  
-    // fetch api
-    const res = await fetch(`${baseUrl}${process.env.TOKEN}&q=${value}&limit=1`, { cache: "no-cache" }); // , next: { revalidate: 1 }
-    const dataFetch = await res.json();
+async function Page({data} : any) { 
 
-    
-    const data = dataFetch.data;
-    
-    console.log('res', {data});
-    
-    // const path = request.nextUrl.searchParams.get('path') || '/';
-
-    // revalidatePath(path);
-
-    
     return (
 
       <div className="flex justify-center">
@@ -42,9 +38,9 @@ async function getResult(value: any, request: NextRequest) {
           <div className="relative flex mt-10 md:mt-4">
 
         
-        <SearchBar getResult={getResult} />
+        <SearchBar />
 
-        {data.length === 0 ? <div>No results</div> : <ResultList data={data} />}
+        <ResultList />
 
           </div>
 
@@ -57,4 +53,4 @@ async function getResult(value: any, request: NextRequest) {
 
 }
 
-export default getResult;
+export default Page;
