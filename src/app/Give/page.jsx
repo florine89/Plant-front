@@ -1,4 +1,6 @@
+import NewPlant from "@/components/GIve/addPlant";
 import { PlantItem } from "@/components/PlantItem";
+import { prisma } from "@/lib";
 
 /**
  * This function gets all avaiable Plants of our database
@@ -18,6 +20,9 @@ async function Page(){
   console.log('allPlants', allPlants)
   return(
     <>
+
+    <NewPlant/>
+    
     <ul className="pl-4">
       {allPlants.map(cat => (
         <PlantItem key={cat.id} {...cat}/>))}

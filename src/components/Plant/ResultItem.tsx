@@ -11,6 +11,7 @@ type ResultItemProps = {
  * With Image, we add in the next.config the possibilty to fetch all the domains
  */
 export default function ResultItem({id, common_name, image_url} : ResultItemProps){
+  console.log("result item");
   return (
 
   <div key={id} className="max-w-sm rounded overflow-hidden shadow-lg m-2">

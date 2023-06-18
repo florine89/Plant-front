@@ -1,3 +1,5 @@
+import { revalidateTag } from 'next/cache';
+
 function SearchBar({ getResult } : any) {  
 
     async function changeInputValue(data: FormData){
@@ -8,6 +10,7 @@ function SearchBar({ getResult } : any) {
         console.log('input val', inputval);
       
         getResult(inputval);
+        revalidateTag('posts');
       
         // return { value: inputval }
       }
