@@ -23,7 +23,8 @@ async function Page(){
 
     <NewPlant/>
     
-    <ul className="pl-4">
+    <ul className="pl-4 flex flex-col items-center">
+      <h2>La liste de plantes</h2>
       {allPlants.map(cat => (
         <PlantItem key={cat.id} {...cat}/>))}
     </ul>

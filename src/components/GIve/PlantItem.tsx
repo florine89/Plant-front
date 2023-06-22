@@ -15,7 +15,7 @@ export function PlantItem({id, name, description, condition_name, category_name,
 
   return (
 
-  <div key={id} className="max-w-sm rounded overflow-hidden shadow-lg">
+  <div key={id} className="flex max-w-sm rounded overflow-hidden shadow-lg">
     {/* <Image className="w-full" src={image} alt="Sunset in the mountains"/> */}
   <div className="px-6 py-4">
     <div className="font-bold text-xl mb-2">{name}</div>

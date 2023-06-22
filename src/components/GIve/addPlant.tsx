@@ -7,7 +7,7 @@ const NewPlant = () => {
     async function action (data: FormData){
         const name = data.get("name");
         const description = data.get("description");
-        const quantity = 1;
+        const quantity = data.get("quantity");
         const user_id = 1;
         console.log('new plant send')
         if ((!name || typeof name !== 'string') || (!description || typeof description !== 'string') || (!quantity || typeof quantity !== 'number')) return
@@ -43,9 +43,9 @@ const NewPlant = () => {
             />
             <button
                 type="submit"
-                className="border rounded border-slate-700 pl-2 m-2"
+                className="border rounded border-slate-700 pl-2 m-2 bg-slate-500 text-slate-300 uppercase"
             >
-                send
+                Ajoute ta plante !
             </button>
 
         </form>
