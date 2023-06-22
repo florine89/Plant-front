@@ -7,7 +7,9 @@ const NewPlant = () => {
     async function action (data: FormData){
         const name = data.get("name");
         const description = data.get("description");
-        const quantity = data.get("quantity");
+        // console.log(description)
+        const quantity = Number(data.get("quantity"));
+        // console.log(typeof quantity)
         const user_id = 1;
         console.log('new plant send')
         if ((!name || typeof name !== 'string') || (!description || typeof description !== 'string') || (!quantity || typeof quantity !== 'number')) return
