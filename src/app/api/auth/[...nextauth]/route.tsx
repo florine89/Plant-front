@@ -99,7 +99,7 @@ export const authOptions: NextAuthOptions = {
           id: u.id,
         }
       }
-      return token
+      return token;
     }
   }
 }
