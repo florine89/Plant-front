@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import Image from 'next/image';
-import logo from "../../public/Maplante.png"
+import logo from "../../../public/Maplante.png"
 import { useRouter } from 'next/navigation'
 
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -44,8 +44,9 @@ export function Nav() {
 
     }, [])
 
-    const { data: session, status } = useSession()
-    if (status === "authenticated" && session) {
+    const { data: session } = useSession();
+
+    if (session) {
 
         return (
             <div
@@ -78,7 +79,7 @@ export function Nav() {
                         >
                             Se déconnecter
                         </button>
-                        <h2 className="lowercase">Bonjour  {session?.user?.name}</h2>
+                        <h2 className="lowercase">Bonjour  {session?.user?.email}</h2>
 
                     </div>
                 </nav>

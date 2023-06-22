@@ -9,6 +9,9 @@ const NewPlant = () => {
         const description = data.get("description");
         // console.log(description)
         const quantity = Number(data.get("quantity"));
+
+        
+
         // console.log(typeof quantity)
         const user_id = 1;
         console.log('new plant send')
