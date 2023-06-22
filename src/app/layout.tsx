@@ -1,6 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import { Nav } from '../components/Nav';
+import { Nav } from '../components/NavBar/Nav';
 import Logo from '../components/logo';
 import { Providers } from './providers';
 

@@ -13,11 +13,13 @@ function getAllPlants() {
 /**
  * 
  * @returns For each item in the DB, returns an instance the component by passing the props to the child
- */
+*/
 async function Page(){
   
   const allPlants = await getAllPlants()
-  console.log('allPlants', allPlants)
+  // console.log('allPlants', allPlants)
+  
+  
   return(
     <>
 
