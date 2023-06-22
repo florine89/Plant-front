@@ -15,3 +15,15 @@ export const prisma =
   })
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+
+export async function createPlant(name: string, description: string, quantity: number, user_id: number) {
+  try {
+    const plant = await prisma.plant.create({data : {name, description, quantity, user_id }})
+    console.log("lib plant")
+    
+    return plant;
+  } catch (error) {
+    return(error)
+  }
+}

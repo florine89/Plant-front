@@ -87,19 +87,19 @@ export const authOptions: NextAuthOptions = {
         }
       }
     },
-    jwt: ({token, account}) => {
-      // console.log('JWT callback' ,{token, account})
+    jwt: ({token, account, user}) => {
+      console.log('JWT callback' ,{token, account, user})
       if (account) {
-        const u = account as unknown as any;
+        // const u = account as unknown as any;
         token.id_token = account.id_token
         token.provider = account.provider
         token.accessToken = account.access_token
+        token.id = user?.id // to use to get user info, id, email and firstname
         return {
           ...token,
-          id: u.id,
         }
       }
-      return token
+      return token;
     }
   }
 }

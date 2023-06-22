@@ -8,16 +8,17 @@ datasource db {
 }
 
 model Plant {
-  id          Int       @id @default(autoincrement())
-  name        String    @db.VarChar(255)
-  description String?
-  quantity    Int
-  picture     String?
-  category_id Int
-  user_id     Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  favorite    Favorite?
+  id             Int       @id @default(autoincrement())
+  name           String    @db.VarChar(255)
+  description    String?
+  quantity       Int
+  picture        String?
+  user_id        Int
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  category_name  String    @default("plantes")
+  condition_name String    @default("bonne")
+  favorite       Favorite?
 }
 
 model Category {
